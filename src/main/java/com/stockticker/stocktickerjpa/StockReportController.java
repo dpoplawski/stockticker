@@ -11,6 +11,7 @@ import java.util.List;
 public class StockReportController {
   @Autowired
   StockTickerRepo repo;
+
   @GetMapping("/stocks")
   private List<StockTicker> getAllStocks() {
     return (List<StockTicker>) repo.findAll();

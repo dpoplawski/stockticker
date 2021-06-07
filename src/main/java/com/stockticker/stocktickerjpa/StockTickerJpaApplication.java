@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import yahoofinance.Stock;
 import yahoofinance.YahooFinance;
 import yahoofinance.histquotes.HistoricalQuote;
+import yahoofinance.quotes.stock.StockQuote;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -41,9 +42,9 @@ public class StockTickerJpaApplication {
 			Stock stock1 = YahooFinance.get(symbol1, true);
 			if(stock1 != null && stock1.isValid()){
 				isValid = true;
-				HistoricalQuote quote = stock1.getHistory(today).get(0);
-				low = quote.getLow().setScale(2, RoundingMode.HALF_UP).toString();
-				high = quote.getHigh().setScale(2, RoundingMode.HALF_UP).toString();
+				StockQuote quote = stock1.getQuote();
+				low = quote.getDayLow().setScale(2, RoundingMode.HALF_UP).toString();
+				high = quote.getDayHigh().setScale(2, RoundingMode.HALF_UP).toString();
 			}
 			StockTicker st1 = new StockTicker(symbol1, isValid, low, high, tempDate);
 			repository.save(st1);
@@ -53,9 +54,9 @@ public class StockTickerJpaApplication {
 			Stock stock2 = YahooFinance.get(symbol2, true);
 			if(stock2 != null && stock2.isValid()){
 				isValid = true;
-				HistoricalQuote quote = stock2.getHistory(today).get(0);
-				low = quote.getLow().setScale(2, RoundingMode.HALF_UP).toString();
-				high = quote.getHigh().setScale(2, RoundingMode.HALF_UP).toString();
+				StockQuote quote = stock2.getQuote();
+				low = quote.getDayLow().setScale(2, RoundingMode.HALF_UP).toString();
+				high = quote.getDayHigh().setScale(2, RoundingMode.HALF_UP).toString();
 			}
 			StockTicker st2 = new StockTicker(symbol2, isValid, low, high, tempDate);
 			repository.save(st2);
@@ -64,9 +65,9 @@ public class StockTickerJpaApplication {
 			Stock stock3 = YahooFinance.get(symbol3, true);
 			if(stock3 != null && stock3.isValid()){
 				isValid = true;
-				HistoricalQuote quote = stock3.getHistory(today).get(0);
-				low = quote.getLow().setScale(2, RoundingMode.HALF_UP).toString();
-				high = quote.getHigh().setScale(2, RoundingMode.HALF_UP).toString();
+				StockQuote quote = stock3.getQuote();
+				low = quote.getDayLow().setScale(2, RoundingMode.HALF_UP).toString();
+				high = quote.getDayHigh().setScale(2, RoundingMode.HALF_UP).toString();
 			}
 			StockTicker st3 = new StockTicker(symbol2, isValid, low, high, tempDate);
 			repository.save(st3);

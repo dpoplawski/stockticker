@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 import yahoofinance.Stock;
 import yahoofinance.YahooFinance;
 import yahoofinance.histquotes.HistoricalQuote;
+import yahoofinance.histquotes.Interval;
+import yahoofinance.quotes.stock.StockQuote;
+
 import java.io.IOException;
 import java.math.RoundingMode;
 import java.sql.Date;
@@ -31,14 +34,13 @@ public class StockController {
     Boolean isValid = false;
 
     Date tempDate =  new java.sql.Date(Calendar.getInstance().getTime().getTime());
-    Calendar today = Calendar.getInstance();
     Stock stock = YahooFinance.get(symbol, true);
     //check to make sure stock is valid and was not returned null
     if(stock != null && stock.isValid()){
       isValid = true;
-      HistoricalQuote quote = stock.getHistory(today).get(0);
-      low = quote.getLow().setScale(2, RoundingMode.HALF_UP).toString();
-      high = quote.getHigh().setScale(2, RoundingMode.HALF_UP).toString();
+      StockQuote quote = stock.getQuote();
+      low = quote.getDayLow().setScale(2, RoundingMode.HALF_UP).toString();
+      high = quote.getDayHigh().setScale(2, RoundingMode.HALF_UP).toString();
     }
     // create new stock ticker and save to repo
     StockTicker st = new StockTicker(symbol, isValid, low, high, tempDate);
