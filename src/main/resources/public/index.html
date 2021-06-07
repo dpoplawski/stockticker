@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Stock Updater</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <script
+                src="https://code.jquery.com/jquery-3.6.0.min.js"
+                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+                crossorigin="anonymous"></script>
+        <script src="stock.js"></script>
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+        <style>
+            .navbar{
+                background-color: #333;
+                color:#999;
+                padding: 10px;
+            }
+            #mainBody{
+                padding-top: 20px;
+                padding-left: 20px;
+            }
+            #results {
+                padding-top: 5px;
+                padding-left: 20px;
+            }
+            #submit{
+                background-color: #814efa;
+                color: #fff;
+            }
+
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-dark bg-primary">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1">Stock Updater</span>
+            </div>
+        </nav>
+        <div id="mainBody">
+            <form id="stockTicker">
+                <label for="symbol">Stock Symbol:</label>
+                <input type="text" id="symbol" name="symbol">
+                <input id="submit" type="submit" value="Submit"><br>
+            </form>
+        </div>
+
+        <div id="results">
+            <label>High Today: <span id="hi"></span></label><br>
+            <label>Low Today: <span id="low"></span></label>
+        </div>
+    </body>
+</html>
